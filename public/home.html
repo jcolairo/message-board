@@ -1,0 +1,26 @@
+<section class="container" ng-controller="MessageController as message">
+  <div>
+    <h1>Message Board</h1>
+
+    <input ng-model="message.post.title" type="text" placeholder="title" class="form-control">
+    <textarea ng-model="message.post.body" name="name" placeholder="body" class="form-control"></textarea>
+    <button ng-click="message.createPost(post)" type="button" class="btn btn-primary btn-block">Post</button>
+    <button ng-click="message.updatePost(post)" type="button" class="btn btn-success btn-block">Update</button>
+
+    <p></p>
+    <ul ng-repeat="posts in message.posts">
+      <li>
+        <h3>Title: {{posts.title}}
+          <a ng-click="message.editPost(posts._id)" class="pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
+          <a ng-click="message.deletePost(posts._id)" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+        </h3>
+      </li>
+      <li>
+        Body: {{posts.body}}
+      </li>
+      <em>
+        Time stamp: {{posts.posted}}
+      </em>
+    </ul>
+  </div>
+</section>
