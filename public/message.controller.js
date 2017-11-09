@@ -1,10 +1,10 @@
 function MessageController(MessageFactory, $state) {
   const controller = this;
 
+  // Get All Posts
   controller.getAllPosts = function() {
     MessageFactory.getAllPosts().then(
       function success(success) {
-        console.log('loaded all posts', success.data);
         controller.posts = success.data;
       },
       function error (err) {
@@ -13,11 +13,11 @@ function MessageController(MessageFactory, $state) {
     );
   };
 
+  // Create Post
   controller.createPost = function () {
-    let post = controller.post;
+    const post = controller.post;
     MessageFactory.createPost(post).then(
       function success() {
-        console.log('created new post', post);
         $state.reload();
       },
       function error (err) {
@@ -26,11 +26,11 @@ function MessageController(MessageFactory, $state) {
     );
   };
 
+  // Edit Post
   controller.editPost = function (postId) {
     MessageFactory.editPost(postId).then(
       function success(existingListing) {
         controller.post = existingListing.data;
-        console.log('edited:', existingListing.data);
       },
       function error (err) {
         console.warn(err);
@@ -38,11 +38,11 @@ function MessageController(MessageFactory, $state) {
     );
   };
 
+  // Update Post
   controller.updatePost = function() {
-    let post = controller.post;
+    const post = controller.post;
     MessageFactory.updatePost(post).then(
       function success() {
-        console.log('successful update post', post);
         $state.reload();
       },
       function error(err) {
@@ -51,10 +51,10 @@ function MessageController(MessageFactory, $state) {
     );
   };
 
+  // Delete Post
   controller.deletePost = function (postId) {
     MessageFactory.deletePost(postId).then(
       function success() {
-        console.log('deleted post', postId);
         $state.reload();
       },
       function error(err) {
@@ -62,6 +62,40 @@ function MessageController(MessageFactory, $state) {
       }
     );
   };
+
+  // reaction
+  let like = 0;
+
+  controller.addOne = function(postId) {
+    if (postId === postId) {
+
+      like =+ like + 1;
+      document.cookie = 'like=' + like + '; expire=Sun 31st Dec 2017 23:00:00 GMT';
+
+      const likedCookiesArray = document.cookie.split('=');
+      const divData = document.getElementById('showCount');
+      divData.innerHTML='Number of Likes: '+ likedCookiesArray[1];
+    }
+  };
+
+
+  controller.likePost = function(postId) {
+    like = like + 1;
+
+    document.cookie = 'like=' + like + '; expire=Sun 31st Dec 2017 23:00:00 GMT';
+    const likedCookiesArray = document.cookie.split('=');
+    const divData = document.getElementById('showCount');
+
+    MessageFactory.likePost(postId).then(
+      function success() {
+        divData.innerHTML='Number of Likes: '+ likedCookiesArray[1];
+      },
+      function error (err) {
+        console.warn(err);
+      }
+    );
+  };
+
 
   function init() {
     controller.getAllPosts();

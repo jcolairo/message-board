@@ -3,7 +3,7 @@ const MessageSchema = new mongoose.Schema({
 
   title: {type: String, require: true},
   body: {type: String},
-  tag: {type: String, enum: ['GOOD', 'BAD']},
+  reaction: {type: String},
   posted: {type: Date, default: Date.now}
 
 });

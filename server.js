@@ -18,11 +18,12 @@ app.post('/api/blogpost', messageCTRL.createPost);
 
 app.get('/api/blogpost/:id', messageCTRL.getPostById);
 
-
 app.post('/api/blogpost/:id', messageCTRL.deletePost);
 
 app.put('/api/blogpost/:id', messageCTRL.updatePost);
 
+
+app.put('/api/blogpost/like/:id', messageCTRL.likePost);
 
 
 app.listen(8080);

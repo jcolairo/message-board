@@ -34,6 +34,13 @@ function MessageFactory ($http) {
         method: 'POST',
         url: `/api/blogpost/${postId}`
       });
+    },
+    likePost: function(post) {
+      return $http({
+        method: 'PUT',
+        url: `/api/blogpost/like/${post}`,
+        data: post
+      });
     }
   };
 }

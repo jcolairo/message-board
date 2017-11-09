@@ -75,10 +75,22 @@ function deletePost(req, res) {
     );
 }
 
+function likePost(req, res) {
+  const postId = req.params.id;
+  const post = req.body;
+  const reaction = req.body.reaction;
+  console.log('*************************');
+  console.log('postId', postId);
+  console.log('post', post);
+  console.log('here');
+  console.log('reaction', reaction);
+}
+
 module.exports = {
   getAllPosts: getAllPosts,
   createPost: createPost,
   deletePost: deletePost,
   updatePost: updatePost,
-  getPostById: getPostById
+  getPostById: getPostById,
+  likePost: likePost
 };
