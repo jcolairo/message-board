@@ -1,12 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="MessageBoardApp">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Message Board</title>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
+
+  <script src="app.js" charset="utf-8"></script>
+
+  <script src="message.factory.js" charset="utf-8"></script>
+
+  <script src="message.controller.js" charset="utf-8"></script>
+
+  <title>Document</title>
+
 </head>
 <body>
-  <h1>Hello world</h1>
+
+  <section ui-view>
+
+  <p ui-sref="home">home</p>
+
+  </section>
 </body>
 </html>
