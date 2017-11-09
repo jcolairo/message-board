@@ -4,10 +4,10 @@ function getAllPosts(req, res) {
   message
     .find()
     .then(
-      function success(posts) {
+      (posts) => {
         res.json(posts);
       },
-      function error () {
+      () => {
         res.sendStatus(400);
       }
     );
@@ -19,10 +19,10 @@ function createPost(req, res) {
   message
     .create(post)
     .then(
-      function success(postObj) {
+      (postObj) => {
         res.json(postObj);
       },
-      function error () {
+      () => {
         res.sendStatus(400);
       }
     );
@@ -33,10 +33,10 @@ function getPostById(req, res) {
   message
     .findOne({_id: postId})
     .then(
-      function success(post) {
+      (post) => {
         res.json(post);
       },
-      function error() {
+      () => {
         res.sendStatus(400);
       }
     );
@@ -52,10 +52,10 @@ function updatePost(req, res) {
       body: post.body
     })
     .then(
-      function success(postObj) {
+      (postObj) => {
         res.json(postObj);
       },
-      function err () {
+      () => {
         res.sendStatus(400);
       }
     );
@@ -66,10 +66,10 @@ function deletePost(req, res) {
   message
     .remove({_id: postId})
     .then(
-      function success() {
+      () => {
         res.sendStatus(200);
       },
-      function error() {
+      () => {
         res.sendStatus(400);
       }
     );
