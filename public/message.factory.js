@@ -1,41 +1,41 @@
 function MessageFactory ($http) {
 
   return {
-    getAllPosts: function(posts) {
+    getAllPosts: (posts) => {
       return $http({
         method: 'GET',
         url: '/api/blogpost',
         data: posts
       });
     },
-    createPost: function(post) {
+    createPost: (post) => {
       return $http({
         method: 'POST',
         url: '/api/blogpost',
         data: post
       });
     },
-    editPost: function(postId) {
+    editPost: (postId) => {
       return $http({
         method: 'GET',
         url: `api/blogpost/${postId}`,
         data: postId
       });
     },
-    updatePost: function(post) {
+    updatePost: (post) => {
       return $http({
         method: 'PUT',
         url: `/api/blogpost/${post._id}`,
         data: post
       });
     },
-    deletePost: function(postId) {
+    deletePost: (postId) => {
       return $http({
         method: 'POST',
         url: `/api/blogpost/${postId}`
       });
     },
-    likePost: function(post) {
+    likePost: (post) => {
       return $http({
         method: 'PUT',
         url: `/api/blogpost/like/${post}`,

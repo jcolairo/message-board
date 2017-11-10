@@ -2,95 +2,101 @@ function MessageController(MessageFactory, $state) {
   const controller = this;
 
   // Get All Posts
-  controller.getAllPosts = function() {
+  controller.getAllPosts = () => {
     MessageFactory.getAllPosts().then(
-      function success(success) {
+      (success) => {
         controller.posts = success.data;
       },
-      function error (err) {
+      (err) => {
         console.warn(err);
       }
     );
   };
 
   // Create Post
-  controller.createPost = function () {
+  controller.createPost = () => {
     const post = controller.post;
     MessageFactory.createPost(post).then(
-      function success() {
+      () => {
         $state.reload();
       },
-      function error (err) {
+      (err) => {
         console.warn(err);
       }
     );
   };
 
   // Edit Post
-  controller.editPost = function (postId) {
+  controller.editPost = (postId) => {
     MessageFactory.editPost(postId).then(
-      function success(existingListing) {
+      (existingListing) => {
         controller.post = existingListing.data;
       },
-      function error (err) {
+      (err) => {
         console.warn(err);
       }
     );
   };
 
   // Update Post
-  controller.updatePost = function() {
+  controller.updatePost = () => {
     const post = controller.post;
     MessageFactory.updatePost(post).then(
-      function success() {
+      () => {
         $state.reload();
       },
-      function error(err) {
+      (err) => {
         console.warn(err);
       }
     );
   };
 
   // Delete Post
-  controller.deletePost = function (postId) {
+  controller.deletePost = (postId) => {
     MessageFactory.deletePost(postId).then(
-      function success() {
+      () => {
         $state.reload();
       },
-      function error(err) {
+      (err) => {
         console.warn(err);
       }
     );
   };
 
   // reaction
+  // Repeat for other reactions
   let like = 0;
-
-  controller.addOne = function(postId) {
+  controller.addOne = (postId) => {
+    // If postId matches existing postId then addOne
     if (postId === postId) {
 
       like =+ like + 1;
+
       document.cookie = 'like=' + like + '; expire=Sun 31st Dec 2017 23:00:00 GMT';
 
       const likedCookiesArray = document.cookie.split('=');
       const divData = document.getElementById('showCount');
       divData.innerHTML='Number of Likes: '+ likedCookiesArray[1];
     }
+    // Else
+    // Get new postId and start counting
+    // Display new number
   };
 
-
-  controller.likePost = function(postId) {
+  // Repeat for other reactions
+  controller.likePost = (postId) => {
     like = like + 1;
 
     document.cookie = 'like=' + like + '; expire=Sun 31st Dec 2017 23:00:00 GMT';
+
     const likedCookiesArray = document.cookie.split('=');
     const divData = document.getElementById('showCount');
 
     MessageFactory.likePost(postId).then(
-      function success() {
+      () => {
         divData.innerHTML='Number of Likes: '+ likedCookiesArray[1];
       },
-      function error (err) {
+      (err) => {
         console.warn(err);
       }
     );
