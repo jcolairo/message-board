@@ -15,7 +15,6 @@ function getAllPosts(req, res) {
 
 function createPost(req, res) {
   const post = req.body;
-  console.log(post);
   message
     .create(post)
     .then(
@@ -45,7 +44,6 @@ function getPostById(req, res) {
 function updatePost(req, res) {
   const postId = req.params.id;
   const post = req.body;
-  console.log('post', post);
   message
     .update({_id: postId}, {
       title: post.title,
